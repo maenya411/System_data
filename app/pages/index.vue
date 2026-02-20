@@ -11,10 +11,26 @@ const showModal = ref(false)
 const editEmailData = ref(null)
 const search = ref('')
 
+// Safe filter
 const filteredEmails = computed(() =>
   emails.value.filter(e =>
-    e.name.toLowerCase().includes(search.value.toLowerCase())
+    (e.name || '').toLowerCase().includes(search.value.toLowerCase())
   )
+)
+
+// Stats
+const totalEmails = computed(() => emails.value.length)
+const activeEmails = computed(() =>
+  emails.value.filter(e => e.status === 'Active').length
+)
+const inactiveEmails = computed(() =>
+  emails.value.filter(e => e.status === 'Inactive').length
+)
+const exitedEmails = computed(() =>
+  emails.value.filter(e => e.status === 'Exited').length
+)
+const retiredEmails = computed(() =>
+  emails.value.filter(e => e.status === 'Retired').length
 )
 
 const openAddModal = () => {
@@ -33,8 +49,9 @@ const saveEmail = (email) => {
 </script>
 
 <template>
-  <div class="min-h-screen bg-black text-gray-100 animate-fadeIn">
+  <!-- Layout already contains Navbar + Sidebar + Footer -->
 
+  <div class="min-h-screen bg-black text-gray-100 animate-fadeIn">
     <div class="p-6 space-y-8">
 
       <!-- TOP BAR -->
@@ -43,7 +60,7 @@ const saveEmail = (email) => {
         <!-- Add Button -->
         <button
           @click="openAddModal"
-          class="relative bg-gradient-to-r from-orange-600 to-orange-500
+          class="bg-linear-to-r from-orange-600 to-orange-500
                  hover:from-orange-500 hover:to-orange-400
                  text-white px-6 py-2.5 rounded-xl
                  shadow-lg hover:shadow-orange-500/30
@@ -68,7 +85,7 @@ const saveEmail = (email) => {
         />
       </div>
 
-      <!-- CHART + STATS -->
+      <!-- ANALYTICS + STATS -->
       <div class="flex flex-col md:flex-row gap-6">
 
         <!-- ANALYTICS -->
@@ -82,68 +99,58 @@ const saveEmail = (email) => {
         <!-- STATS -->
         <div class="flex-1 grid grid-cols-1 md:grid-cols-2 gap-5">
 
-          <!-- Total -->
-          <div class="group bg-gray-900 p-6 rounded-2xl
-                      border border-gray-800 border-l-4 border-blue-500
-                      shadow-xl
-                      transition-all duration-300 ease-out
-                      hover:-translate-y-2 hover:shadow-2xl
-                      hover:shadow-blue-500/20 hover:border-blue-500/40">
+          <!-- TOTAL -->
+          <div class="bg-gray-900 p-6 rounded-2xl
+                      border border-gray-800 border-l-4 border-l-blue-500
+                      shadow-xl hover:shadow-blue-500/20
+                      transition-all duration-300 hover:-translate-y-1">
             <h3 class="text-sm text-gray-400">Total Emails</h3>
             <p class="text-3xl font-bold text-white mt-2">
-              {{ emails.length }}
+              {{ totalEmails }}
             </p>
           </div>
 
-          <!-- Active -->
-          <div class="group bg-gray-900 p-6 rounded-2xl
-                      border border-gray-800 border-l-4 border-green-500
-                      shadow-xl
-                      transition-all duration-300 ease-out
-                      hover:-translate-y-2 hover:shadow-2xl
-                      hover:shadow-green-500/20 hover:border-green-500/40">
+          <!-- ACTIVE -->
+          <div class="bg-gray-900 p-6 rounded-2xl
+                      border border-gray-800 border-l-4 border-l-green-500
+                      shadow-xl hover:shadow-green-500/20
+                      transition-all duration-300 hover:-translate-y-1">
             <h3 class="text-sm text-gray-400">Active Emails</h3>
             <p class="text-3xl font-bold text-green-400 mt-2">
-              {{ emails.filter(e=>e.status==='Active').length }}
+              {{ activeEmails }}
             </p>
           </div>
 
-          <!-- Inactive -->
-          <div class="group bg-gray-900 p-6 rounded-2xl
-                      border border-gray-800 border-l-4 border-yellow-500
-                      shadow-xl
-                      transition-all duration-300 ease-out
-                      hover:-translate-y-2 hover:shadow-2xl
-                      hover:shadow-yellow-500/20 hover:border-yellow-500/40">
+          <!-- INACTIVE -->
+          <div class="bg-gray-900 p-6 rounded-2xl
+                      border border-gray-800 border-l-4 border-l-yellow-500
+                      shadow-xl hover:shadow-yellow-500/20
+                      transition-all duration-300 hover:-translate-y-1">
             <h3 class="text-sm text-gray-400">Inactive Emails</h3>
             <p class="text-3xl font-bold text-yellow-400 mt-2">
-              {{ emails.filter(e=>e.status==='Inactive').length }}
+              {{ inactiveEmails }}
             </p>
           </div>
 
-          <!-- Exited -->
-          <div class="group bg-gray-900 p-6 rounded-2xl
-                      border border-gray-800 border-l-4 border-red-600
-                      shadow-xl
-                      transition-all duration-300 ease-out
-                      hover:-translate-y-2 hover:shadow-2xl
-                      hover:shadow-red-500/20 hover:border-red-500/40">
+          <!-- EXITED -->
+          <div class="bg-gray-900 p-6 rounded-2xl
+                      border border-gray-800 border-l-4 border-l-red-600
+                      shadow-xl hover:shadow-red-500/20
+                      transition-all duration-300 hover:-translate-y-1">
             <h3 class="text-sm text-gray-400">Exited Emails</h3>
             <p class="text-3xl font-bold text-red-400 mt-2">
-              {{ emails.filter(e=>e.status==='Exited').length }}
+              {{ exitedEmails }}
             </p>
           </div>
 
-          <!-- Retired -->
-          <div class="group bg-gray-900 p-6 rounded-2xl
-                      border border-gray-800 border-l-4 border-orange-500
-                      shadow-xl
-                      transition-all duration-300 ease-out
-                      hover:-translate-y-2 hover:shadow-2xl
-                      hover:shadow-orange-500/20 hover:border-orange-500/40">
+          <!-- RETIRED -->
+          <div class="bg-gray-900 p-6 rounded-2xl
+                      border border-gray-800 border-l-4 border-l-orange-500
+                      shadow-xl hover:shadow-orange-500/20
+                      transition-all duration-300 hover:-translate-y-1">
             <h3 class="text-sm text-gray-400">Retired Emails</h3>
             <p class="text-3xl font-bold text-orange-400 mt-2">
-              {{ emails.filter(e=>e.status==='Retired').length }}
+              {{ retiredEmails }}
             </p>
           </div>
 
@@ -151,10 +158,7 @@ const saveEmail = (email) => {
       </div>
 
       <!-- EMAIL TABLE -->
-      <div class="bg-gray-950 border border-gray-800 rounded-2xl
-                  shadow-2xl p-5
-                  transition-all duration-300
-                  hover:shadow-orange-500/10">
+      <div class="bg-gray-950 border border-gray-800 rounded-2xl shadow-2xl p-5">
         <EmailTable
           :emails="filteredEmails"
           @edit="openEditModal"

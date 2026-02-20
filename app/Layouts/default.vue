@@ -1,5 +1,5 @@
 <script setup>
-import Sidebar from '~/components/Sidebar.vue'
+import Sidebar from '~/components/sidebar.vue'
 import { useRouter } from 'vue-router'
 const router = useRouter()
 

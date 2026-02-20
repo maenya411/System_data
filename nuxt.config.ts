@@ -7,7 +7,7 @@ css: ['@/assets/css/main.css'],
   devtools: { enabled: true },
   vite: {
     plugins: [
-      tailwindcss(),
+      tailwindcss() as any
     ],
   }
 })
