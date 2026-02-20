@@ -1,7 +1,7 @@
 <script setup>
 import { ref, computed } from 'vue'
 import Sidebar from '@/components/sidebar.vue'
-import Navbar from '~/components/Navbar.vue'
+
 import AddEmailModal from '@/components/AddEmailModal.vue'
 import EmailAnalytics from '@/components/EmailAnalytics.vue'
 import EmailTable from '@/components/EmailTable.vue'
