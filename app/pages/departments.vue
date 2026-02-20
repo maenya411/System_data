@@ -118,7 +118,7 @@ const deleteDepartment = (deptName) => {
           <!-- Empty State -->
           <tr v-if="departments.length === 0">
             <td colspan="7" class="text-center p-6 text-gray-400">
-              No departments available.
+              No departments available..
             </td>
           </tr>
         </tbody>
