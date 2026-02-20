@@ -50,7 +50,8 @@ const saveEmail = (email) => {
 
 <template>
   <!-- Layout already contains Navbar + Sidebar + Footer -->
-
+<Navbar/>
+  <Sidebar/>
   <div class="min-h-screen bg-black text-gray-100 animate-fadeIn">
     <div class="p-6 space-y-8">
 

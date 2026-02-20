@@ -80,6 +80,8 @@ const loginWithGoogle = () => {
 </script>
 
 <template>
+  <Navbar/>
+  <Sidebar/>
   <div class="flex justify-center items-center min-h-screen bg-black text-gray-100 px-4">
     <div class="bg-gray-900 p-10 sm:p-8 rounded-2xl shadow-2xl w-full max-w-md border border-gray-800">
 

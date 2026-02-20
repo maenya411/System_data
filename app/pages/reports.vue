@@ -80,6 +80,8 @@ const generatePDF = () => {
 </script>
 
 <template>
+  <Navbar/>
+  <Sidebar/>
   <div class="bg-[#0f172a] min-h-screen text-gray-200 p-6">
     <div class="flex justify-between items-center mb-6">
       <h1 class="text-3xl font-bold text-orange-400">Reports & Analytics</h1>

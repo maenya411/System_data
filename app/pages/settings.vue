@@ -6,6 +6,8 @@ const emailDomain = ref('kvda.go.ke')
 </script>
 
 <template>
+  <Navbar/>
+  <Sidebar/>
   <div class="bg-[#0f172a] min-h-screen text-gray-200 p-6">
 
     <h1 class="text-3xl font-bold mb-6 text-orange-400">
