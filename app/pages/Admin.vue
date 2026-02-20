@@ -17,7 +17,7 @@ const rememberMe = ref(false)
 const error = ref('')
 const isSignUp = ref(false)
 
-// --- Use composable (single source of truth) ---
+// --- Use composable ---
 const { emails, addOrUpdateEmail } = useEmails()
 
 // --- Departments and Status options ---
@@ -41,7 +41,7 @@ const loginAsUser = () => {
   router.push('/') // dashboard
 }
 
-// --- Sign up / create account ---
+// --- Sign up ---
 const createAccount = () => {
   if (!email.value || !password.value || !pfNumber.value) {
     error.value = 'Email, password, and PF Number are required'
@@ -59,7 +59,7 @@ const createAccount = () => {
     pfNumber: pfNumber.value,
     dept: department.value,
     status: status.value,
-    name: email.value.split('@')[0] // optional: extract name from email
+    name: email.value.split('@')[0]
   })
 
   // Reset form
@@ -91,18 +91,14 @@ const loginWithGoogle = () => {
       <div v-if="isSignUp" class="space-y-4">
         <input type="email" v-model="email" placeholder="Email"
                class="w-full bg-gray-800 text-white px-4 py-3 rounded-xl border border-gray-700 focus:outline-none focus:ring-2 focus:ring-orange-500 transition hover:ring-orange-400"/>
-
         <input type="password" v-model="password" placeholder="Password"
                class="w-full bg-gray-800 text-white px-4 py-3 rounded-xl border border-gray-700 focus:outline-none focus:ring-2 focus:ring-orange-500 transition hover:ring-orange-400"/>
-
         <input type="text" v-model="pfNumber" placeholder="PF Number"
                class="w-full bg-gray-800 text-white px-4 py-3 rounded-xl border border-gray-700 focus:outline-none focus:ring-2 focus:ring-orange-500 transition hover:ring-orange-400"/>
-
         <select v-model="department"
                 class="w-full bg-gray-800 text-white px-4 py-3 rounded-xl border border-gray-700 focus:outline-none focus:ring-2 focus:ring-orange-500 transition hover:ring-orange-400">
           <option v-for="dep in departments" :key="dep" :value="dep">{{ dep }}</option>
         </select>
-
         <select v-model="status"
                 class="w-full bg-gray-800 text-white px-4 py-3 rounded-xl border border-gray-700 focus:outline-none focus:ring-2 focus:ring-orange-500 transition hover:ring-orange-400">
           <option v-for="s in statuses" :key="s" :value="s">{{ s }}</option>
@@ -140,15 +136,6 @@ const loginWithGoogle = () => {
           Sign In
         </button>
       </div>
-
-      <!-- OR separator -->
-      <div class="flex items-center gap-2 my-4">
-        <hr class="flex-1 border-gray-700"/>
-        <span class="text-gray-400 text-sm">OR</span>
-        <hr class="flex-1 border-gray-700"/>
-      </div>
-
-   
 
       <!-- TOGGLE SIGNUP / LOGIN -->
       <p class="text-center text-gray-400 mt-4 text-sm">

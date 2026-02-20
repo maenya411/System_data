@@ -1,6 +1,5 @@
 <script setup>
 import { ref, computed } from 'vue'
-import navbar from '@/components/navbar.vue'
 import AddEmailModal from '@/components/AddEmailModal.vue'
 import EmailAnalytics from '@/components/EmailAnalytics.vue'
 import EmailTable from '@/components/EmailTable.vue'
@@ -35,9 +34,6 @@ const saveEmail = (email) => {
 
 <template>
   <div class="min-h-screen bg-black text-gray-100 animate-fadeIn">
-
-    <!-- NAVBAR -->
-    <Navbar />
 
     <div class="p-6 space-y-8">
 

@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from 'vue'
 
-const organisationName = ref('kvda Organisation')
+const organisationName = ref('KVDA Organisation')
 const emailDomain = ref('kvda.go.ke')
 </script>
 

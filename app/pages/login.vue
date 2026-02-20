@@ -10,14 +10,12 @@ const loginAsAdmin = () => {
 
 <template>
   <div class="flex justify-center items-center min-h-screen bg-black text-gray-100">
-
     <div class="bg-gray-900 p-10 sm:p-8 px-6 rounded-2xl shadow-2xl w-full max-w-md border border-gray-800">
 
       <h1 class="text-3xl font-bold mb-8 text-center text-white">
         Admin Login
       </h1>
 
-      <!-- Admin Button -->
       <button 
         type="button"
         @click="loginAsAdmin"
@@ -30,6 +28,5 @@ const loginAsAdmin = () => {
       </button>
 
     </div>
-
   </div>
 </template>
